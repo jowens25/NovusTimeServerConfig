@@ -1,0 +1,16 @@
+build==1.2.2.post1
+click==8.1.8
+-e git+ssh://git@github.com/jowens25/NovusTimeServerConfig.git@df0cc145670f666011748135b199666f3e44e27d#egg=click_example_inout&subdirectory=nts
+greet==0.3
+markdown-it-py==3.0.0
+mdurl==0.1.2
+novus-time-server @ file:///home/jowens/Projects/NovusTimeServerConfig/nts
+novus-timeserver @ file:///home/jowens/Projects/NovusTimeServerConfig/novus_timerserver
+packaging==24.2
+Pygments==2.19.1
+pyproject_hooks==1.2.0
+pyserial==3.5
+rich==13.9.4
+shellingham==1.5.4
+typer==0.15.2
+typing_extensions==4.12.2

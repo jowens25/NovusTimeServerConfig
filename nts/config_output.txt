@@ -1,0 +1,298 @@
+
+b''
+
+b''
+$CC
+b'$CR*11\r\n'
+$CC
+b'$CR*11\r\n'
+
+b''
+
+b''
+-- $RC,0x50000000*70
+b''
+
+b''
+
+b''
+--------------------------------------------
+b''
+-- Setup Clock
+b''
+--------------------------------------------
+b''
+-- Select TOD as input
+b''
+$WC,0xB0000008,0x00000001
+b'$WR,0xB0000008*1B\r\n'
+-- In Sync Threshold 500ns
+b''
+$WC,0xB0000050,0x000001F4
+b'$WR,0xB0000050*16\r\n'
+-- Write Time (not set)
+b''
+$WC,0xB0000024,0x00000000
+b'$WR,0xB0000024*15\r\n'
+$WC,0xB0000020,0x00000000
+b'$WR,0xB0000020*11\r\n'
+-- Write Offset (not set)
+b''
+$WC,0xB0000030,0x00000000
+b'$WR,0xB0000030*10\r\n'
+$WC,0xB0000034,0x00000000
+b'$WR,0xB0000034*14\r\n'
+-- Write Drift (not set)
+b''
+$WC,0xB0000040,0x00000000
+b'$WR,0xB0000040*17\r\n'
+$WC,0xB0000044,0x00000000
+b'$WR,0xB0000044*13\r\n'
+-- Enable Clock
+b''
+$WC,0xB0000000,0x00000001
+b'$WR,0xB0000000*13\r\n'
+
+b''
+--------------------------------------------
+b''
+-- Setup TOD Slave
+b''
+--------------------------------------------
+b''
+-- no correction
+b''
+$WC,0xB0040010,0x00000000
+b'$WR,0xB0040010*16\r\n'
+-- -- Baudrate 5 = 38400
+b''
+$WC,0xB0040020,0x00000005
+b'$WR,0xB0040020*15\r\n'
+-- Baudrate 7 = 115200
+b''
+-- $WC,0xB0040020,0x00000007
+b''
+-- Polarity
+b''
+$WC,0xB0040008,0x00000001
+b'$WR,0xB0040008*1F\r\n'
+
+b''
+-- -- Enable TOD Slave in ESIP mode
+b''
+$WC,0xB0040000,0x30000001
+b'$WR,0xB0040000*17\r\n'
+-- Enable TOD Slave in UBX mode
+b''
+-- $WC,0xB0040000,0x10000001
+b''
+
+b''
+--------------------------------------------
+b''
+-- Setup PPS Slave
+b''
+--------------------------------------------
+b''
+-- Enable PPS Slave
+b''
+$WC,0xB0030000,0x00000001
+b'$WR,0xB0030000*10\r\n'
+
+b''
+--------------------------------------------
+b''
+-- Setup PTP OC
+b''
+--------------------------------------------
+b''
+-- Set Profile to Default, P2P, Layer 3v4, TwoStep, no Signaling 
+b''
+$WC,0xB0010084,0x00010000
+b'$WR,0xB0010084*1E\r\n'
+$WC,0xB0010080,0x00000001
+b'$WR,0xB0010080*1A\r\n'
+-- Set VLAN disabled Prio 6, ID 0
+b''
+$WC,0xB0010088,0x0000C000
+b'$WR,0xB0010088*12\r\n'
+$WC,0xB0010080,0x00000002
+b'$WR,0xB0010080*1A\r\n'
+-- IP 192.168.0.16
+b''
+$WC,0xB001008C,0x1000A8C0
+b'$WR,0xB001008C*69\r\n'
+$WC,0xB0010080,0x00000004
+b'$WR,0xB0010080*1A\r\n'
+
+b''
+-- Default Dataset
+b''
+-- Clock ID 4E:54:4C:FF:FE:00:00:00
+b''
+$WC,0xB0010104,0xFF4C544E
+b'$WR,0xB0010104*17\r\n'
+$WC,0xB0010108,0x000000FE
+b'$WR,0xB0010108*1B\r\n'
+$WC,0xB0010100,0x00000001
+b'$WR,0xB0010100*13\r\n'
+-- Set Domain 0
+b''
+$WC,0xB001010c,0x00000000
+b'$WR,0xB001010C*60\r\n'
+$WC,0xB0010100,0x00000002
+b'$WR,0xB0010100*13\r\n'
+-- Set Prio1 to 128
+b''
+$WC,0xB001010c,0x80000000
+b'$WR,0xB001010C*60\r\n'
+$WC,0xB0010100,0x00000008
+b'$WR,0xB0010100*13\r\n'
+-- Set Prio2 to 128
+b''
+$WC,0xB001010c,0x00800000
+b'$WR,0xB001010C*60\r\n'
+$WC,0xB0010100,0x00000010
+b'$WR,0xB0010100*13\r\n'
+-- Set Clock Quality: Class to 6, Accuracy to 0x21, Variance to 0x436A
+b''
+$WC,0xB0010110,0x0621436A
+b'$WR,0xB0010110*12\r\n'
+$WC,0xB0010100,0x00000004
+b'$WR,0xB0010100*13\r\n'
+
+b''
+-- Port Dataset
+b''
+-- Set Delay Mechanism valid
+b''
+$WC,0xB0010200,0x00000001
+b'$WR,0xB0010200*10\r\n'
+-- Set Delay Interval to 1/s and timeout 3
+b''
+$WC,0xB0010210,0x00030000
+b'$WR,0xB0010210*11\r\n'
+-- Set Announce Interval to 1/s and timeout to 3
+b''
+$WC,0xB0010214,0x00000300
+b'$WR,0xB0010214*15\r\n'
+-- Set Sync Interval to 1/s and timeout to 3
+b''
+$WC,0xB0010218,0x00000300
+b'$WR,0xB0010218*19\r\n'
+-- Set Message intervals
+b''
+$WC,0xB0010200,0x00000002
+b'$WR,0xB0010200*10\r\n'
+
+b''
+-- Time Properties Dataset
+b''
+-- Set Time Source: GNSS 0x20 
+b''
+$WC,0xB0010504,0x00000020
+b'$WR,0xB0010504*13\r\n'
+$WC,0xB0010500,0x00000080
+b'$WR,0xB0010500*17\r\n'
+-- Set PTP Timescale to TRUE
+b''
+$WC,0xB0010504,0x00000100
+b'$WR,0xB0010504*13\r\n'
+$WC,0xB0010500,0x00000040
+b'$WR,0xB0010500*17\r\n'
+-- Set Frequency Traceable to TRUE
+b''
+$WC,0xB0010504,0x00000200
+b'$WR,0xB0010504*13\r\n'
+$WC,0xB0010500,0x00000020
+b'$WR,0xB0010500*17\r\n'
+-- Set Time Traceable to TRUE
+b''
+$WC,0xB0010504,0x00000400
+b'$WR,0xB0010504*13\r\n'
+$WC,0xB0010500,0x00000010
+b'$WR,0xB0010500*17\r\n'
+-- Set Leap61 to FALSE
+b''
+$WC,0xB0010504,0x00000000
+b'$WR,0xB0010504*13\r\n'
+$WC,0xB0010500,0x00000008
+b'$WR,0xB0010500*17\r\n'
+-- Set Leap59 to FALSE
+b''
+$WC,0xB0010504,0x00000000
+b'$WR,0xB0010504*13\r\n'
+$WC,0xB0010500,0x00000004
+b'$WR,0xB0010500*17\r\n'
+-- Set UTC Offset Valid to TRUE
+b''
+$WC,0xB0010504,0x00002000
+b'$WR,0xB0010504*13\r\n'
+$WC,0xB0010500,0x00000002
+b'$WR,0xB0010500*17\r\n'
+-- Set UTC Offset to 37s
+b''
+$WC,0xB0010504,0x00250000
+b'$WR,0xB0010504*13\r\n'
+$WC,0xB0010500,0x00000001
+b'$WR,0xB0010500*17\r\n'
+
+b''
+-- Enable OC
+b''
+$WC,0xB0010000,0x00000001
+b'$WR,0xB0010000*12\r\n'
+
+b''
+--------------------------------------------
+b''
+-- Setup NTP Server
+b''
+--------------------------------------------
+b''
+-- Stratum 1, Poll Interval 4, Precision 227, Unicast/Multicast/Broadcast mode, IPv4
+b''
+$WC,0xB0020084,0x0104E371
+b'$WR,0xB0020084*1D\r\n'
+-- VLAN 0x4000 (unused)
+b''
+$WC,0xB0020088,0x00004000
+b'$WR,0xB0020088*11\r\n'
+-- Mac: 4E:54:4C:00:00:00
+b''
+$WC,0xB002008C,0x004C544E
+b'$WR,0xB002008C*6A\r\n'
+$WC,0xB0020090,0x00000000
+b'$WR,0xB0020090*18\r\n'
+-- IP: 192.168.0.16
+b''
+$WC,0xB0020094,0x1000A8C0
+b'$WR,0xB0020094*1C\r\n'
+-- Refernce Id GPS 
+b''
+$WC,0xB00200A4,0x47505320
+b'$WR,0xB00200A4*64\r\n'
+-- set config valid bits
+b''
+$WC,0xB0020080,0x0000001F
+b'$WR,0xB0020080*19\r\n'
+
+b''
+-- set UTC Offset 37, valid, no leap, no smearing
+b''
+$WC,0xB0020104,0x00252000
+b'$WR,0xB0020104*14\r\n'
+-- set UTC Info and smearing valid
+b''
+$WC,0xB0020100,0x00000003
+b'$WR,0xB0020100*10\r\n'
+
+b''
+-- enable NTP Server
+b''
+$WC,0xB0020000,0x00000001
+b'$WR,0xB0020000*11\r\n'
+
+b''
+$RC,0xB0020000
+b'$RR,0xB0020000,0x00000001*71\r\n'
