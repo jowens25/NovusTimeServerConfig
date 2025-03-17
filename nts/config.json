@@ -1,0 +1,50 @@
+{
+    "0": {
+        "type": "Ucm_CoreConfig_ConfSlaveCoreType",
+        "core_type": 1,
+        "core_instance_nr": 1,
+        "address_range_low": 0,
+        "address_range_high": 268435455,
+        "interrupt_mask": 0
+    },
+    "1": {
+        "type": "Ucm_CoreConfig_ClkClockCoreType",
+        "core_type": 2,
+        "core_instance_nr": 1,
+        "address_range_low": 2952790016,
+        "address_range_high": 2952855551,
+        "interrupt_mask": 0
+    },
+    "2": {
+        "type": "Ucm_CoreConfig_PtpOrdinaryClockCoreType",
+        "core_type": 9,
+        "core_instance_nr": 1,
+        "address_range_low": 2952855552,
+        "address_range_high": 2952921087,
+        "interrupt_mask": 0
+    },
+    "3": {
+        "type": "Ucm_CoreConfig_NtpServerCoreType",
+        "core_type": 22,
+        "core_instance_nr": 1,
+        "address_range_low": 2952921088,
+        "address_range_high": 2952986623,
+        "interrupt_mask": 0
+    },
+    "4": {
+        "type": "Ucm_CoreConfig_PpsSlaveCoreType",
+        "core_type": 7,
+        "core_instance_nr": 1,
+        "address_range_low": 2952986624,
+        "address_range_high": 2953052159,
+        "interrupt_mask": 0
+    },
+    "5": {
+        "type": "Ucm_CoreConfig_TodSlaveCoreType",
+        "core_type": 15,
+        "core_instance_nr": 1,
+        "address_range_low": 2953052160,
+        "address_range_high": 2953117695,
+        "interrupt_mask": 0
+    }
+}
